@@ -62,7 +62,10 @@ std::vector<std::string> MerkleTree::GenerateMerkleProof(std::string hash) {
 int MerkleTree::HashIndexInLevel(std::string hash, TreeLevel level) {
     MerkleNode* target = nullptr;
     for(MerkleNode* node : level) {
-        if(node->NodeHash() == hash) target = node;
+        if(node->NodeHash() == hash) {
+            target = node;
+            break;
+        }
     }
     assert(target != nullptr);
 
