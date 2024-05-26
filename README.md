@@ -3,6 +3,9 @@
 
 Simple Merkle Tree implementation to generate the complete tree from a hash list.
 
+## Presentation
+In the **presentation** directory, there is some theory about Merkle trees and their use.
+
 ## Requirements
    - OpenSSL 3.0.2
 
