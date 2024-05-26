@@ -81,7 +81,7 @@ void MerkleTree::PrintSubTree(MerkleNode *node, uint level) {
 
     std:: string buff;
     buff = std::string(level*2, ' ');
-    buff += level + '0';
+    buff += std::to_string(level);
     buff += " - ";
 
     std::cout << buff << node->NodeHash() << std::endl;
@@ -92,7 +92,8 @@ void MerkleTree::PrintSubTree(MerkleNode *node, uint level) {
 void MerkleTree::PrintByLevels() {
     for(int i = 0 ; i < tree_levels_.size(); i++) {
         std:: string buff;
-        buff = "level: " + std::to_string(i) + "\n";
+        buff = "level: ";
+        buff += std::to_string(i) + "\n";
         for(MerkleNode* node: tree_levels_[i]) {
             buff += node->NodeHash() + "\n";
         } 
