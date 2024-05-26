@@ -15,7 +15,7 @@ make
 
 Execute de program using:
 ```bash
-./start
+./start.out
 ```
 
 ## License
