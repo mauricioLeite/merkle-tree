@@ -10,8 +10,10 @@ void MerkleTree::FromHashList(std::vector<std::string> leaves) {
 }
 
 void MerkleTree::GenerateTreeLevels(TreeLevel level){
+    tree_levels_.push_back(level);
     if(level.size() == 1) {
         merkle_root_ = level.front();
+        std::reverse(tree_levels_.begin(), tree_levels_.end());
         return;
     } 
 
@@ -28,6 +30,47 @@ void MerkleTree::GenerateTreeLevels(TreeLevel level){
     GenerateTreeLevels(generated_level);
 }
 
+std::vector<std::string> MerkleTree::GenerateMerkleProof(std::string hash) {
+    assert(hash != "");
+    assert(hash.length() != 0);
+
+    int depth = tree_levels_.size() - 1;
+    std::vector<std::string> proof({hash});
+
+    for(int level = depth; level > 0; level--) {
+        int index = HashIndexInLevel(hash, tree_levels_[level]);
+
+        bool left_node = (index % 2 == 0);
+        int pair_index =  left_node ? index + 1 : index - 1;
+
+        MerkleNode *base, *pair;
+        base = tree_levels_[level][index];
+        pair = tree_levels_[level][pair_index];
+        proof.push_back(pair->NodeHash());
+
+        if(!left_node) std::swap(base, pair);
+
+        MerkleNode *node = new MerkleNode();
+        node->SetChildren(base, pair);
+        node->ComputeNodeHash();
+        hash = node->NodeHash();
+        delete node;
+    }
+    return proof;
+}
+
+int MerkleTree::HashIndexInLevel(std::string hash, TreeLevel level) {
+    MerkleNode* target = nullptr;
+    for(MerkleNode* node : level) {
+        if(node->NodeHash() == hash) target = node;
+    }
+    assert(target != nullptr);
+
+    auto it = std::find(level.begin(), level.end(), target);
+    assert(it != level.end());
+
+    return std::distance(level.begin(), it);
+}
 
 void MerkleTree::PrintTree() {
     PrintSubTree(merkle_root_, 0);
@@ -46,3 +89,13 @@ void MerkleTree::PrintSubTree(MerkleNode *node, uint level) {
     PrintSubTree(node->Right(), level + 1);
 }
 
+void MerkleTree::PrintByLevels() {
+    for(int i = 0 ; i < tree_levels_.size(); i++) {
+        std:: string buff;
+        buff = "level: " + std::to_string(i) + "\n";
+        for(MerkleNode* node: tree_levels_[i]) {
+            buff += node->NodeHash() + "\n";
+        } 
+        std::cout << buff << std::endl;
+    }
+}
