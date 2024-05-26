@@ -4,6 +4,19 @@
 
 using namespace std;
 
+// Overload ostream out operator to print vector n-dimensional
+template <typename S>
+ostream& operator<<(ostream& os, const vector<S>& vector){
+    os << "[";
+    size_t last = vector.size() - 1;
+    for (size_t i = 0; i < vector.size(); i++) {
+        os << vector[i];
+        if (i != last) os << ", ";
+    }
+    os << "]";
+    return os;
+}
+
 int main() {
     vector<string> hash_list{
         "17c1532ca6cff8f6a3a8200028af6c2580bf37f39e10cb0966e8a573e3b24a1f", //professor
@@ -17,6 +30,11 @@ int main() {
     MerkleTree tree = MerkleTree();
     tree.FromHashList(hash_list);
     tree.PrintTree();
+    cout << endl;
+    tree.PrintByLevels();
+    
+    vector<string> merkle_proof = tree.GenerateMerkleProof("a75d067fa44bca815126dbf606a73907c9e68f1cd892d413424edfa84a0d4058");
+    cout << merkle_proof << endl;
 
     exit(EXIT_SUCCESS);
 }
