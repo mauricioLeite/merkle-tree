@@ -5,7 +5,7 @@ OBJ = $(SRC:.cpp = .o)
 LIBS = -lcrypto
 
 Start: $(OBJ)
-	g++ $(CFLAGS) $(INCLUDE) -o start $(OBJ) $(LIBS)
+	g++ $(CFLAGS) $(INCLUDE) -o start.out $(OBJ) $(LIBS)
 
 clean:
 	rm -f *.o
