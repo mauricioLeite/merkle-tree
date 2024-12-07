@@ -1,25 +1,40 @@
-# Merkle Tree
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+# Merkle Tree Implementation
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Simple Merkle Tree implementation to generate the complete tree from a hash list.
+Simple Merkle Tree implementation designed to generate a complete tree from a given list of hashes. 
 
-## Presentation
-In the **presentation** directory, there is some theory about Merkle trees and their use.
+## About this Project
+Merkle Trees are a fundamental data structure widely utilized in cryptography and distributed systems, for efficient and data integrity verification. During this project we will understand the core principles to implement this structure.
+
+## Project Structure
+- **presentation/**: Contains theoretical resources explaining how Merkle Trees work and their practical uses.
+- **src/**: Contains the source code for a simple Merkle Tree implementation.
+- **Makefile**: Automates the build process for the project.
 
 ## Requirements
-   - OpenSSL 3.0.2
+This project requires the following dependencies:
+- **OpenSSL 3.0.2** (or higher) for cryptographic hash functions.
 
-## Running
+## Getting Started
 
-After clone the repository, run make command:
+### Clone the Repository
+```bash
+git clone https://github.com/yourusername/merkle-tree.git
+cd merkle-tree
+```
+
+### Build the project
+Use the command below to compile the source code:
 ```bash
 make
 ```
 
-Execute de program using:
+### Executing
+Execute the compiled program using:
 ```bash
 ./start.out
 ```
 
+
 ## License
-Distributed under the GPL v3 License. See `LICENSE.md` for more information.
+Distributed under the **MIT License**. See `LICENSE.md` for more information.
