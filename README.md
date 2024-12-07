@@ -17,24 +17,21 @@ This project requires the following dependencies:
 
 ## Getting Started
 
-### Clone the Repository
+Clone the Repository
 ```bash
 git clone https://github.com/yourusername/merkle-tree.git
 cd merkle-tree
 ```
 
-### Build the project
 Use the command below to compile the source code:
 ```bash
 make
 ```
 
-### Executing
 Execute the compiled program using:
 ```bash
 ./start.out
 ```
-
 
 ## License
 Distributed under the **MIT License**. See `LICENSE.md` for more information.
